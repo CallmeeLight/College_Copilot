@@ -60,7 +60,7 @@ export default function Attendance({ attendance, setAttendance, threshold }: Att
           <button onClick={() => setModalOpen(true)} className="glass-button glass-button-primary text-xs"><Plus size={14} /> Add Subject</button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {attendance.map(a => {
             const pct = getAttendancePercentage(a.attendedClasses, a.totalClasses);
             const isLow = pct < threshold;

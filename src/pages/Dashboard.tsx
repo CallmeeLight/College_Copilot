@@ -55,7 +55,7 @@ export default function Dashboard({ classes, assignments, attendance, announceme
       </div>
 
       {/* Overview Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-8">
         {[
           { label: 'Classes Today', value: todayClasses.length, icon: BookOpen, color: 'from-blue-500/20 to-blue-600/10', textColor: 'text-blue-400', borderColor: 'border-blue-500/20' },
           { label: 'Pending Tasks', value: pending.length, icon: CheckSquare, color: 'from-amber-500/20 to-amber-600/10', textColor: 'text-amber-400', borderColor: 'border-amber-500/20' },
@@ -72,9 +72,9 @@ export default function Dashboard({ classes, assignments, attendance, announceme
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left column */}
-        <div className="lg:col-span-2 space-y-5">
+        <div className="lg:col-span-2 space-y-8">
 
           {/* AI Daily Brief */}
           <div className="ai-glow-card animate-slide-up stagger-1">
@@ -227,7 +227,7 @@ export default function Dashboard({ classes, assignments, attendance, announceme
         </div>
 
         {/* Right column */}
-        <div className="space-y-5">
+        <div className="space-y-8">
           {/* Attendance Snapshot */}
           <div className="glass-card animate-slide-up stagger-3">
             <div className="flex items-center justify-between mb-4">

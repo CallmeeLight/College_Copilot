@@ -123,7 +123,7 @@ export default function Fees({ fees, setFees }: FeesProps) {
       </div>
 
       {/* Summary Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 mb-8">
         <div className="glass-card bg-amber-500/[0.04] border-amber-500/20">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs text-slate-400">Total Pending Dues</span>
@@ -187,7 +187,7 @@ export default function Fees({ fees, setFees }: FeesProps) {
           </button>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4 lg:space-y-6">
           {filteredFees.map(fee => {
             const isDueSoon = fee.status !== 'paid' && daysUntil(fee.dueDate) <= 5 && daysUntil(fee.dueDate) >= 0;
             const isPastDue = fee.status !== 'paid' && daysUntil(fee.dueDate) < 0;

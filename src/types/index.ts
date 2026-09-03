@@ -92,3 +92,13 @@ export interface CalendarEvent {
   color: string;
   details?: string;
 }
+
+export interface UserProfile {
+  id: string;
+  full_name: string;
+  email: string;
+  college_name: string;
+  semester: string;
+  created_at: string;
+  updated_at?: string;
+}

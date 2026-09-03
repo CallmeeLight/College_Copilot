@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Settings as SettingsType } from '../types';
 import { clearAllData, markInitialized, setData, KEYS } from '../services/storage';
 import {
   sampleClasses, sampleAssignments, sampleAttendance,
   sampleNotes, sampleAnnouncements, sampleFees, sampleSettings
 } from '../data/sampleData';
-import { Save, RotateCcw, User, School, Bell, Sliders, ShieldAlert, Sparkles } from 'lucide-react';
+import { Save, RotateCcw, User, School, Bell, Sliders, ShieldAlert, Sparkles, LogOut, KeyRound } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
 interface SettingsProps {
@@ -14,6 +16,8 @@ interface SettingsProps {
 }
 
 export default function Settings({ settings, setSettings }: SettingsProps) {
+  const navigate = useNavigate();
+  const { user, profile, signOut, isConfigured } = useAuth();
   const [form, setForm] = useState<SettingsType>(settings);
 
   const handleSave = (e: React.FormEvent) => {
@@ -53,7 +57,7 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
         <p className="page-subtitle">Configure student info, attendance thresholds, and system preferences</p>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-5">
+      <form onSubmit={handleSave} className="space-y-6 lg:space-y-8">
         {/* Student Profile */}
         <div className="glass-card">
           <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/5">
@@ -61,7 +65,7 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
             <h3 className="text-sm font-semibold text-white">Student Identification</h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
             <div>
               <label className="text-xs text-slate-400 mb-1.5 block">Full Name</label>
               <input
@@ -171,6 +175,40 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
               </div>
               <span className="badge badge-info text-xs">Dark Liquid Glass</span>
             </div>
+          </div>
+        </div>
+
+        {/* Account & Authentication Card */}
+        <div className="glass-card">
+          <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/5">
+            <KeyRound size={16} className="text-emerald-400" />
+            <h3 className="text-sm font-semibold text-white">Student Account & Security</h3>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold text-slate-200">
+                {profile?.full_name || user?.user_metadata?.full_name || 'Demo Student'}
+              </p>
+              <p className="text-[0.7rem] text-slate-400">
+                {user?.email || 'student@university.edu'} • {profile?.college_name || user?.user_metadata?.college_name || 'SRM University'}
+              </p>
+              <p className="text-[0.65rem] text-emerald-400/90 mt-1">
+                {isConfigured ? '✓ Connected to Supabase Cloud Authentication' : '⚡ Local Demo Authentication Active'}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={async () => {
+                await signOut();
+                toast.success('Signed out successfully');
+                navigate('/login');
+              }}
+              className="glass-button glass-button-danger !py-2 text-xs flex items-center gap-1.5 self-start sm:self-auto"
+            >
+              <LogOut size={14} /> Sign Out of Workspace
+            </button>
           </div>
         </div>
 

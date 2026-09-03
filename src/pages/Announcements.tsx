@@ -156,7 +156,7 @@ export default function Announcements({ announcements, setAnnouncements }: Annou
           </button>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4 lg:space-y-6">
           {filteredAnnouncements.map(notice => (
             <div
               key={notice.id}

@@ -179,7 +179,7 @@ export default function Calendar({ classes, assignments, announcements, fees }: 
         </span>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Calendar Grid - 2 Cols */}
         <div className="lg:col-span-2 glass-card p-4">
           {/* Weekday headers */}

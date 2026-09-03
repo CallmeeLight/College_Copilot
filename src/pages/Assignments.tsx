@@ -112,7 +112,7 @@ export default function Assignments({ assignments, setAssignments }: Assignments
           <button onClick={openAdd} className="glass-button glass-button-primary text-xs"><Plus size={14} /> Add Assignment</button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {filtered.map(a => (
             <div key={a.id} className={`glass-card group ${isOverdue(a) ? 'border-red-500/25 bg-red-500/5' : ''} ${a.status === 'completed' ? 'opacity-60' : ''}`}>
               <div className="flex items-start justify-between mb-2">

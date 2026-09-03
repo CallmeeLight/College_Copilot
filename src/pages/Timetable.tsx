@@ -108,7 +108,7 @@ export default function Timetable({ classes, setClasses }: TimetableProps) {
 
       {/* Daily View */}
       {view === 'daily' && (
-        <div className="space-y-3">
+        <div className="space-y-4 lg:space-y-6">
           {dailyClasses.length === 0 ? (
             <div className="empty-state glass-card">
               <p className="empty-state-icon">📚</p>
@@ -141,18 +141,18 @@ export default function Timetable({ classes, setClasses }: TimetableProps) {
 
       {/* Weekly View */}
       {view === 'weekly' && (
-        <div className="space-y-5">
+        <div className="space-y-6 lg:space-y-8">
           {DAYS.map(day => {
             const dayClasses = classes.filter(c => c.day === day).sort((a, b) => a.startTime.localeCompare(b.startTime));
             return (
               <div key={day}>
-                <h3 className={`text-sm font-semibold mb-2 ${day === todayName ? 'text-indigo-400' : 'text-slate-400'}`}>
+                <h3 className={`text-sm font-semibold mb-3 ${day === todayName ? 'text-indigo-400' : 'text-slate-400'}`}>
                   {day} {day === todayName && '(Today)'}
                 </h3>
                 {dayClasses.length === 0 ? (
                   <p className="text-xs text-slate-600 pl-3 mb-2">No classes</p>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                     {dayClasses.map(cls => (
                       <div key={cls.id} className={`glass-card !p-3 flex items-center gap-3 ${day === todayName ? 'border-indigo-500/15' : ''}`}>
                         <div className="w-1 h-8 rounded-full" style={{ background: cls.color }} />
