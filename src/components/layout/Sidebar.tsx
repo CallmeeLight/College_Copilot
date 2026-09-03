@@ -107,15 +107,15 @@ export default function Sidebar({ onSearch }: SidebarProps) {
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
                 className={({ isActive }) =>
-                  `flex items-center gap-4 px-4 py-3.5 rounded-xl text-[16px] font-medium transition-all duration-200 group ${
+                  `sidebar-nav-link flex items-center gap-4 px-4 py-3.5 rounded-xl text-[16px] font-medium group ${
                     isActive
-                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
+                      ? 'sidebar-nav-active border'
                       : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'
                   }`
                 }
               >
-                <item.icon size={22} className="flex-shrink-0" />
-                <span>{item.label}</span>
+                <item.icon size={22} className="sidebar-nav-icon flex-shrink-0 group-hover:text-emerald-300" />
+                <span className="transition-colors duration-200">{item.label}</span>
               </NavLink>
             ))}
           </div>

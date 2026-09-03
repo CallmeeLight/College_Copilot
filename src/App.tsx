@@ -3,7 +3,7 @@
 // =============================================
 
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAppData } from './hooks/useLocalStorage';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -12,6 +12,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Sidebar from './components/layout/Sidebar';
 import SearchModal from './components/shared/SearchModal';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AmbientBackground from './components/layout/AmbientBackground';
 
 // Pages
 import Login from './pages/Login';
@@ -36,15 +37,18 @@ function WorkspaceLayout({ children }: { children: React.ReactNode }) {
   } = useAppData();
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <div className="app-layout">
       {/* Persistent Glass Navigation Sidebar */}
       <Sidebar onSearch={() => setIsSearchOpen(true)} />
 
-      {/* Main Content Area */}
+      {/* Main Content Area with Smooth Page Transition */}
       <main className="main-content">
-        {children}
+        <div key={location.pathname} className="page-transition">
+          {children}
+        </div>
       </main>
 
       {/* Global Cmd+K Search Modal */}
@@ -114,6 +118,9 @@ function AppContent() {
 
   return (
     <BrowserRouter>
+      {/* Dynamic ambient moving background */}
+      <AmbientBackground />
+
       <Routes>
         {/* Public Authentication Routes */}
         <Route
